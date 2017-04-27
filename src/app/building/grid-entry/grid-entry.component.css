@@ -1,0 +1,12 @@
+.walkable{
+    background-color: rgba(0,0,255,.5);
+}
+.room{
+    background-color: rgba(0,255,0,.5);
+}
+div{
+    background-color: rgba(255, 0,0,.5);
+    position:absolute;
+    width:10;
+    height:10;
+}

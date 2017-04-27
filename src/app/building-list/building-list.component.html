@@ -1,0 +1,10 @@
+<div class="building-list-container row hoverable" *ngFor="let building of buildings" (click)="buildingSelected(building)">
+  <div class="building-list-entry">
+    <span class="col-md-3">
+        {{ building.name }}
+      </span>
+    <span class="col-md-9">
+        <img [src]="building.imageUrl">
+      </span>
+  </div>
+</div>

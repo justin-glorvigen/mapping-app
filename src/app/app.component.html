@@ -1,3 +1,11 @@
-<h1>
-  {{title}}
-</h1>
+<div class="container">
+    <h1>Building Mapping CMS</h1>
+    <button class="btn btn-primary" (click)="loadPreviousViewState()" *ngIf="viewStates.length > 1">Back</button>
+    <hr>
+    <div *ngIf="getCurrentViewState()==='building-list'">
+        <app-building-list (onBuildingSelected)="selectBuilding($event)"></app-building-list>
+    </div>
+    <div *ngIf="getCurrentViewState()==='building'" >
+        <app-building [building]="selectedBuilding"></app-building>
+    </div>
+</div>

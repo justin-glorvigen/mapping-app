@@ -1,0 +1,9 @@
+img {
+    height: 600px;
+}
+span{
+    position: relative;
+}
+.grid-column{
+    position: absolute;
+}

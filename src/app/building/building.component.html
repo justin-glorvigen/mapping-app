@@ -1,0 +1,11 @@
+<div class="row">
+  <span class="col-md-3">
+    <h2>{{ building.name }}</h2>
+  </span>
+  <span class="col-md-9">
+    <img [src]="building.imageUrl" alt="" id="curr-building-img">
+      <div *ngFor="let gridColumn of building.grid; let i = index" class="grid-column" [ngStyle]="{width: getBlockSize(),left: getLeft(i)}">
+        <app-grid-entry *ngFor="let gridEntry of gridColumn" [gridEntry]="gridEntry" ></app-grid-entry>
+    </div>
+  </span>
+</div>

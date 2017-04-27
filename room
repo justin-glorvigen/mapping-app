@@ -1,0 +1,6 @@
+installing component
+  identical src/app/building/building.component.css
+  identical src/app/building/building.component.html
+  identical src/app/building/building.component.spec.ts
+  identical src/app/building/building.component.ts
+  identical src/app/app.module.ts
