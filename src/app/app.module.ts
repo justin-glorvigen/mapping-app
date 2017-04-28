@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 import { BuildingComponent } from './building/building.component';
 import { BuildingListComponent } from './building-list/building-list.component';
 import { GridEntryComponent } from './building/grid-entry/grid-entry.component';
+import { GridService } from './building/grid-service';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { GridEntryComponent } from './building/grid-entry/grid-entry.component';
     FormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [GridService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

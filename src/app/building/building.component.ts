@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Building } from './Building';
-import { GridEntry } from "app/building/gridEntry";
+import { GridEntry } from "./grid-entry";
+import { GridService } from "./grid-service";
 
 @Component({
   selector: 'app-building',
@@ -9,48 +10,33 @@ import { GridEntry } from "app/building/gridEntry";
 })
 export class BuildingComponent implements OnInit {
   @Input('building') building: Building;
-  blockSize: number = 10;
 
-  getblockSize(){
-    return this.blockSize;
-  }
-
-  constructor() {
+  constructor(private gridService: GridService) {
   }
 
   ngOnInit() {
     (<HTMLImageElement>document.getElementById('curr-building-img')).addEventListener('load', event => {
-      this.generateGrid(event);
+      this.building.grid = this.gridService.generateGrid(event, this.building);
     });
   }
 
-  generateGrid(event) {
-    if (!this.building.grid) {
-      let grid: GridEntry[][] = [[]];
+  getBlockSize() {
+    return this.gridService.getBlockSize();
+  }
 
-      //Get size of grid
-      var width = event.target.width;
-      var height = event.target.height;
-      console.log('Width: ' + width + ', Height: ' + height);
-
-      for (var x = 0; x < width; x += this.blockSize){
-        let gridColumn: GridEntry[] = [];
-        for (var y = 0; y < height; y += this.blockSize){
-          gridColumn.push(new GridEntry(x, y, false));
-        }
-        grid.push(gridColumn);
-      }
-
-      this.building.grid = grid;
-      console.log('Grid generated with ' + this.building.grid.length + ' columns');
+  getLeft(i: number) {
+    return this.gridService.getLeft(i);
+  }
+  getTop(i: number) {
+    return '-' + this.gridService.getTop(i);
+  }
+  getEntryStyle(gridEntry: GridEntry) {
+    return {
+      left: gridEntry.locX + 'px',
+      top: gridEntry.locY + 'px'
     }
   }
 
-  getLeft(i: number){
-    return i * this.blockSize + 'px';
-  }
-  getBlockSize(){
-    return this.blockSize + 'px';
-  }
+    
 
 }

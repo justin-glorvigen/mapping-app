@@ -1,1 +1,5 @@
-<div [ngClass]="{walkable: gridEntry.IsWalkable, room: gridEntry.IsRoom}"></div>
+<div [ngClass]="{walkable: gridEntry.isWalkable, room: gridEntry.room != null}"
+     [ngStyle]="{width: getBlockSize(), height: getBlockSize()}"
+     (mouseover)="handleMouseOver()"
+     (click)="gridEntry.isWalkable = !gridEntry.isWalkable">
+</div>

@@ -14,7 +14,7 @@ export class BuildingListComponent implements OnInit {
 
   constructor() {
     this.buildings = [
-      new Building('Test', 'http://localhost:4200/assets/img.png', 'Test Building')
+      new Building('Test', 'http://localhost:4200/assets/image.jpg', 'Test Building')
     ];
   }
 

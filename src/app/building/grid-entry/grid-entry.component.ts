@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { GridEntry } from "app/building/gridEntry";
+import { GridEntry } from "./../grid-entry";
+import { GridService } from "./../grid-service";
 
 @Component({
   selector: 'app-grid-entry',
@@ -9,9 +10,19 @@ import { GridEntry } from "app/building/gridEntry";
 export class GridEntryComponent implements OnInit {
   @Input('gridEntry') gridEntry: GridEntry;
 
-  constructor() { }
+  constructor(private gridService: GridService) { }
 
   ngOnInit() {
+  }
+
+  getBlockSize(){
+    return this.gridService.getBlockSize();
+  }
+
+  handleMouseOver($event){
+    if (this.gridService.selectingWalkableSpace){
+      this.gridEntry.isWalkable = true;
+    }
   }
 
 }

@@ -1,11 +1,16 @@
 <div class="row">
   <span class="col-md-3">
     <h2>{{ building.name }}</h2>
+    <button class="btn btn-primary" (click)="gridService.selectingWalkableSpace = true" *ngIf="!gridService.selectingWalkableSpace">Select Walking Areas</button>
+    <button class="btn btn-primary" (click)="gridService.selectingWalkableSpace = false" *ngIf="gridService.selectingWalkableSpace">Stop Selecting Walking Areas</button>
   </span>
   <span class="col-md-9">
     <img [src]="building.imageUrl" alt="" id="curr-building-img">
-      <div *ngFor="let gridColumn of building.grid; let i = index" class="grid-column" [ngStyle]="{width: getBlockSize(),left: getLeft(i)}">
-        <app-grid-entry *ngFor="let gridEntry of gridColumn" [gridEntry]="gridEntry" ></app-grid-entry>
-    </div>
+    <span *ngFor="let gridColumn of building.grid; let i = index" class="grid-column">
+      <app-grid-entry *ngFor="let gridEntry of gridColumn;" 
+        [gridEntry]="gridEntry" 
+        [ngStyle]="{ left: gridEntry.locX + 'px', top: gridEntry.locY + 'px'}" >
+      </app-grid-entry>
+    </span>
   </span>
 </div>
