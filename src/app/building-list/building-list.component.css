@@ -1,7 +1,6 @@
 .hoverable{
     cursor:pointer;
     transition: background-color .5s ease;
-    padding: 15px;
 }
 .hoverable:hover{
     background-color: #ccc;
@@ -9,4 +8,11 @@
 
 .building-list-entry img {
     max-height: 200px;
+}
+.building-list-entry{
+    padding:10px;
+}
+hr{
+    border:1px solid #333;
+    margin:0px;
 }

@@ -1,7 +1,8 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { BuildingComponent } from '.././building/building.component';
 
-import { Building } from '.././building/Building';
+import { Building } from '../Classes/Building';
+import { BuildingService } from "../Classes/building.service";
 
 @Component({
   selector: 'app-building-list',
@@ -12,10 +13,8 @@ export class BuildingListComponent implements OnInit {
   buildings: Building[];
   @Output() onBuildingSelected = new EventEmitter<{building: Building}>();
 
-  constructor() {
-    this.buildings = [
-      new Building('Test', 'http://localhost:4200/assets/image.jpg', 'Test Building')
-    ];
+  constructor(private buildingService: BuildingService) {
+    this.buildings = this.buildingService.getBuildings();
   }
 
   buildingSelected(building: Building){

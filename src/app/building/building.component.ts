@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Building } from './Building';
-import { GridEntry } from "./grid-entry";
-import { GridService } from "./grid-service";
+import { Building } from '../Classes/Building';
+import { GridEntry } from "../Classes/grid-entry";
+import { GridService } from "../Classes/grid.service";
 
 @Component({
   selector: 'app-building',
@@ -36,7 +36,4 @@ export class BuildingComponent implements OnInit {
       top: gridEntry.locY + 'px'
     }
   }
-
-    
-
 }
