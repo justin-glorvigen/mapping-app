@@ -9,13 +9,15 @@
     <div style="clear:both"></div>
   </div>
   <hr>
-  <div class="building-list-entry hoverable" *ngFor="let building of buildings" (click)="buildingSelected(building)">
+  <div class="building-list-entry hoverable" *ngFor="let building of buildingService.buildings; let x = index;" [routerLink]="x">
     <span class="col-md-3">
         <h4>{{ building.name }}</h4>
       </span>
     <span class="col-md-9">
-        <img [src]="building.imageUrl">
+        <img *ngIf="building.imageUrl" [src]="building.imageUrl">
+        <span *ngIf="!building.imageUrl">No floor plan yet</span>
       </span>
     <div style="clear:both"></div>
   </div>
+  <div style="padding:25px" *ngIf="!buildingService.buildings || !buildingService.buildings.length || buildingService.buildings.length <= 0">No buildings yet</div>
 </div>

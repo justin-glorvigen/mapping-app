@@ -15,3 +15,10 @@ h1{
     margin: 0px -15px 0px -15px;
     padding: 15px;
 }
+.main-button{
+    cursor: pointer;
+    font-weight: normal;
+    font-size:.5em;
+    float:right;
+    margin: 0px 15px 0px 0px;
+}

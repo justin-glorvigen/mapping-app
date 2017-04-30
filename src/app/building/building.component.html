@@ -4,11 +4,19 @@
   </span>
   <span class="col-md-9">
     <img [src]="building.imageUrl" alt="" id="curr-building-img">
-    <span *ngFor="let gridColumn of building.grid; let i = index" class="grid-column">
-      <app-grid-entry *ngFor="let gridEntry of gridColumn;" 
-        [gridEntry]="gridEntry" 
-        [ngStyle]="{ left: gridEntry.locX + 'px', top: gridEntry.locY + 'px'}" >
-      </app-grid-entry>
+    <span *ngIf="building && building.grid">
+      <span *ngFor="let gridColumn of building.grid; let i = index" class="grid-column">
+        <app-grid-entry *ngFor="let gridEntry of gridColumn;" 
+          [gridEntry]="gridEntry" 
+          [ngStyle]="{ left: gridEntry.locX + 'px', top: gridEntry.locY + 'px'}" >
+        </app-grid-entry>
+      </span>
+    </span>
+    <span>
+      <label>
+        Image Url:
+        <input type="text" [(ngModel)]="building.imageUrl">
+      </label>
     </span>
   </span>
 </div>

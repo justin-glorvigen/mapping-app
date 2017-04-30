@@ -14,8 +14,8 @@ import { LoginPageComponent } from './login-page/login-page.component';
 
 //Services
 import { GridService } from './Classes/grid.service';
-import { BuildingService } from './Classes/building.service';
 import { AF } from "./providers/af";
+import { BuildingService } from './Classes/building.service';
 
 export const firebaseConfig = {
   apiKey: "AIzaSyCiKLvNq4eRFMhOGnSC5MkBtXqA1s44kEM",
@@ -27,8 +27,10 @@ export const firebaseConfig = {
 };
 
 const routes: Routes = [
-  { path: '', component: BuildingListComponent },
-  { path: 'login', component: LoginPageComponent }
+  { path: 'login', component: LoginPageComponent },
+  { path: 'buildings', component: BuildingListComponent },
+  { path: 'buildings/:id', component: BuildingComponent },
+  { path: '', redirectTo: 'buildings', pathMatch: 'full' }
 ];
 
 @NgModule({
