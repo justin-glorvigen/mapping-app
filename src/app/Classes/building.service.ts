@@ -5,34 +5,30 @@ import { FirebaseListObservable } from "angularfire2";
 
 @Injectable()
 export class BuildingService {
-    private acctId: string;
     // = [new Building('Test', 'http://localhost:4200/assets/image.jpg', 'Test Building')];
-    public buildings: any[];
-    public buildingFirebaseDB: FirebaseListObservable<any>;
+    private buildingFirebaseDB: FirebaseListObservable<any>;
 
-    constructor(private afService: AF){}
-
-    getBuildingByIndex(index:number){
-        return this.buildings[index];
+    constructor(private afService: AF) {
     }
 
-    setAccountId(acctId: string){
-        this.acctId = acctId;
-        this.downloadBuildings();
-    }
-
-    downloadBuildings(){
-        this.buildingFirebaseDB = this.afService.af.database.list(this.acctId);
-        this.buildingFirebaseDB.subscribe((data) =>{
-            this.buildings = data;
+    getBuildings(){
+        this.afService.af.auth.subscribe((auth) => {
+            console.log('initialized db');
+            return this.afService.af.database.list(auth.uid);
         });
     }
 
-    saveChanges(){
-        this.buildingFirebaseDB.update(this.buildingFirebaseDB.$ref.ref.key, this.buildings);
+    getBuildingByIndex(index: number): any {
+        return this.buildingFirebaseDB.subscribe((data) => {
+            return data[index];
+        });
     }
 
-    addNewBuilding(name: string){
+    saveChanges() {
+        this.buildingFirebaseDB.update(this.buildingFirebaseDB.$ref.ref.key, this.buildingFirebaseDB);
+    }
+
+    addNewBuilding(name: string) {
         let newBldg = new Building(name, '', '');
         this.buildingFirebaseDB.push(newBldg);
     }

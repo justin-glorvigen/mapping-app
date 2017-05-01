@@ -25,7 +25,6 @@ export class AppComponent implements OnInit {
         }else{
           this.isLoggedIn = true;
           this.router.navigate(['']);
-          this.buildingService.setAccountId(auth.uid);
         }
       }
     );

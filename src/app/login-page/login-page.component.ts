@@ -13,13 +13,11 @@ export class LoginPageComponent implements OnInit {
   constructor(public afService: AF, private router: Router, private buildingService: BuildingService) { }
 
   ngOnInit() {
-    
   }
 
   login(){
     this.afService.loginWithGoogle().then((data) => {
       this.router.navigate(['']);
-      this.buildingService.setAccountId(data.uid);
     });
   }
 

@@ -15,6 +15,7 @@ import { LoginPageComponent } from './login-page/login-page.component';
 //Services
 import { GridService } from './Classes/grid.service';
 import { AF } from "./providers/af";
+import { BuildingDataResolver } from "./providers/building-data-resolver";
 import { BuildingService } from './Classes/building.service';
 
 export const firebaseConfig = {

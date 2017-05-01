@@ -18,13 +18,19 @@ export class BuildingComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe((params: Params) => {
-      this.building = this.buildingService.getBuildingByIndex(params['id']);
+      this.refreshBuilding(params);
 
       (<HTMLImageElement>document.getElementById('curr-building-img')).addEventListener('load', event => {
-        if (!this.building.grid){
+        if (!this.building.grid) {
           this.building.grid = this.gridService.generateGrid(event, this.building);
         }
       });
+    });
+  }
+
+  refreshBuilding(params: Params) {
+    this.buildingService.getBuildings().subscribe((data) => {
+        this.building = data[params['id']];
     });
   }
 

@@ -4,6 +4,7 @@
         <a class="main-button" (click)="logout()">Logout</a>
         <a class="main-button" (click)="addBuilding()">Add Building</a>
         <a class="main-button" (click)="buildingService.saveChanges()">Save Changes</a>
+        <a class="main-button" routerLink="../" *ngIf="true">Back</a>
     </h1>
     <router-outlet></router-outlet>
 </div>

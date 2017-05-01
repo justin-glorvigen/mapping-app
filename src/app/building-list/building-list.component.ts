@@ -11,10 +11,12 @@ import { FirebaseListObservable } from "angularfire2";
   styleUrls: ['./building-list.component.css']
 })
 export class BuildingListComponent implements OnInit {
+  buildings: any[];
   constructor(private buildingService: BuildingService) {
   }
 
   ngOnInit() {
+    this.buildingService.getBuildings();
   }
 
 }
