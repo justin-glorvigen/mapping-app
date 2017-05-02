@@ -38,11 +38,13 @@ export class BuildingComponent implements OnInit {
   }
 
   populateImg(): void {
-    (<HTMLImageElement>document.getElementById('curr-building-img')).addEventListener('load', event => {
-      if (!this.building.grid) {
-        this.building.grid = this.gridService.generateGrid(event, this.building);
-      }
-    });
+    if (document.getElementById('curr-building-img')){
+      (<HTMLImageElement>document.getElementById('curr-building-img')).addEventListener('load', event => {
+        if (!this.building.grid) {
+          this.building.grid = this.gridService.generateGrid(event, this.building);
+        }
+      });
+    }
   }
 
   getBlockSize() {
