@@ -13,24 +13,35 @@ import { BuildingService } from "../Classes/building.service";
 export class BuildingComponent implements OnInit {
   private building: Building;
 
-  constructor(private gridService: GridService, private activatedRoute: ActivatedRoute, private buildingService: BuildingService) {
+  constructor(private gridService: GridService, private activatedRoute: ActivatedRoute, private router: Router, private buildingService: BuildingService) {
+
   }
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe((params: Params) => {
-      this.refreshBuilding(params);
+    setTimeout(() => {
+      this.populateData();
+    }, 300);
+  }
 
-      (<HTMLImageElement>document.getElementById('curr-building-img')).addEventListener('load', event => {
-        if (!this.building.grid) {
-          this.building.grid = this.gridService.generateGrid(event, this.building);
-        }
+  populateData():void{
+    this.activatedRoute.params.subscribe((params: Params) => {
+      this.buildingService.getBuildings().then((data) => {
+        data.subscribe((buildings) => {
+          this.building = buildings[params['id']];
+          setTimeout(() => {
+            this.populateImg();
+          }, 200);
+          console.log('Building found: ' + this.building);
+        });
       });
     });
   }
 
-  refreshBuilding(params: Params) {
-    this.buildingService.getBuildings().subscribe((data) => {
-        this.building = data[params['id']];
+  populateImg(): void {
+    (<HTMLImageElement>document.getElementById('curr-building-img')).addEventListener('load', event => {
+      if (!this.building.grid) {
+        this.building.grid = this.gridService.generateGrid(event, this.building);
+      }
     });
   }
 
